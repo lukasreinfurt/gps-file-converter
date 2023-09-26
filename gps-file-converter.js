@@ -207,6 +207,10 @@ class PGGeo {
         return content
     }
 
+    setContent = (c) => {
+        content = c
+    }
+
     getDataType = () => {
         return {
             ...filetype,
