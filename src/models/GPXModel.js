@@ -24,7 +24,7 @@ const GpxWayPoint = {
 }
 
 const GpxModel = {
-    '?xml':'',
+    '?xml version="1.0"':'',
     gpx: {
         metadata: {
             name:'',
