@@ -157,10 +157,12 @@ const PGGeoFromKML = (gO) => {
         // Tracks
         if(pm.LineString) {
             let ts = newGeoTrack(pm.name, pm.description, [])
-            pm.LineString.coordinates.split('\n').forEach(t => {
-                let tp = t.split(',')
-                let tr = newGeoPoint(tp[1],tp[0],tp[2])
-                ts.points.push(tr)
+            pm.LineString.coordinates.split('\n').forEach(l => {
+                l.split(' ').forEach(t => {
+                    let tp = t.trim().split(',')
+                    let tr = newGeoPoint(tp[1],tp[0],tp[2])
+                    ts.points.push(tr)
+                })
             })
             m.tracks.push(ts)
         } 
