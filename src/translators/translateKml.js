@@ -29,7 +29,7 @@ const dataFromModel = (model, options) => {
         ret.kml.Document.Style.push(...style.Style)
 
         model.waypoints.forEach(wp => {
-            let w = kmlmod.newKMLWaypoint(wp.name,wp.desc,wp.point,wpStyleId)
+            let w = kmlmod.newKMLWaypoint(wp.name,wp.desc,wp.point,wp.begin,wp.end,wpStyleId)
             ret.kml.Document.Placemark.push(w)
         })
     }
@@ -43,7 +43,7 @@ const dataFromModel = (model, options) => {
                 ret.kml.Document.StyleMap.push(...tstyle.StyleMap)
                 ret.kml.Document.Style.push(...tstyle.Style)
                 
-                let pt = kmlmod.newKMLTrack(tr.name,tr.desc,tr.points,trStyleId)
+                let pt = kmlmod.newKMLTrack(tr.name,tr.desc,tr.points,tr.begin,tr.end,trStyleId)
                 ret.kml.Document.Placemark.push(pt)
                 nr++
             }

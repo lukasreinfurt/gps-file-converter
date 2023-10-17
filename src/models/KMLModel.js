@@ -38,6 +38,10 @@ const KMLTrack = {
     styleUrl: '',
     LineString: {
         coordinates: ''
+    },
+    TimeSpan: {
+        begin: '',
+        end: ''
     }
 }
 
@@ -47,6 +51,10 @@ const KMLWaypoiny = {
     styleUrl: '',
     Point: {
         coordinates: ''
+    },
+    TimeSpan: {
+        begin: '',
+        end: ''
     }
 }
 
@@ -122,7 +130,7 @@ const newTrackStyle = (id, color, width) => {
     return ret
 }
 
-const newKMLTrack = (name, desc, points,  styleId) => {
+const newKMLTrack = (name, desc, points, begin, end, styleId) => {
     if(!styleId) {
         styleId = config.kml.default.LineStyleId
     }
@@ -130,6 +138,8 @@ const newKMLTrack = (name, desc, points,  styleId) => {
     ret.name = xml.commentString(name)
     ret.description = xml.commentString(desc)
     ret.styleUrl = `#${styleId}`
+    ret.TimeSpan.begin = xml.commentString(begin);
+    ret.TimeSpan.end = xml.commentString(end);
     let pointStr= ''
     points.forEach(p => {
         pointStr += `${p[1]},${p[0]},${p[2] || 0}\n`
@@ -139,7 +149,7 @@ const newKMLTrack = (name, desc, points,  styleId) => {
     return ret
 }
 
-const newKMLWaypoint = (name, desc, point, styleId) => {
+const newKMLWaypoint = (name, desc, point, begin, end, styleId) => {
     if(!styleId) {
         styleId = config.kml.default.LineStyleId
     }
@@ -147,6 +157,8 @@ const newKMLWaypoint = (name, desc, point, styleId) => {
     ret.name = xml.commentString(name)
     ret.description = xml.commentString(desc)
     ret.styleUrl = `#${styleId}`
+    ret.TimeSpan.begin = xml.commentString(begin);
+    ret.TimeSpan.end = xml.commentString(end);
     let pointStr = `${point[1]},${point[0]},${point[2] || 0}\n`
 
     ret.Point.coordinates = pointStr
