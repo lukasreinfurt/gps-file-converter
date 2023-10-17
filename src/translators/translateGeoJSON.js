@@ -3,7 +3,7 @@ const pgmodel = require('../models/PGGeoModel')
 
 const dataFromModel = (model, options) => {
     if(!options) {
-        options = mod.newExportOptions()
+        options = pgmodel.newExportOptions()
     }
     let ret = {
         type: 'FeatureCollection'
